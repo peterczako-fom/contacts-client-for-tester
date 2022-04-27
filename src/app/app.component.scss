@@ -1,0 +1,19 @@
+.layout {
+  margin: 30px
+}
+
+.links-wrapper {
+  border-bottom: solid 2px black;
+  margin-bottom: 50px;
+  display: flex;
+}
+
+.link-row {
+  padding: 10px;
+  border-right: solid 1px black;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
