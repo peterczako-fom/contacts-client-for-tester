@@ -59,7 +59,7 @@ export class ContactsListComponent implements OnInit, AfterViewInit {
 
   createContact() {
     const ref = this.dialog.open(ContactCreateDialogComponent, {minWidth: '500px'});
-    ref.afterClosed().subscribe((created) => {
+    ref.afterClosed().subscribe((created: boolean) => {
       if(created) {
         this.loadContacts();
       }
@@ -74,7 +74,7 @@ export class ContactsListComponent implements OnInit, AfterViewInit {
           id: item.id
         }
       });
-    ref.afterClosed().subscribe((edited) => {
+    ref.afterClosed().subscribe((edited: boolean) => {
       if(edited) {
         this.loadContacts();
       }
@@ -94,11 +94,15 @@ export class ContactsListComponent implements OnInit, AfterViewInit {
   deleteContact(contact: ContactListItemDto) {
     const ref = this.dialog.open(ConfirmDeleteDialogComponent, {
       minWidth: '500px',
-      data: {item: contact}
+      data: {
+        entity: contact,
+        id: contact.id,
+        deleteMethod: (id: number) => this.contactService.delete(id)
+      }
     });
-    ref.afterClosed().subscribe((confirm) => {
+    ref.afterClosed().subscribe((confirm: boolean) => {
       if(confirm) {
-        console.log('delete');
+        this.loadContacts()
       }
     });
   }
