@@ -5,6 +5,10 @@ import {MatPaginator} from "@angular/material/paginator";
 import {ContactListDto} from "../../models/contact-list-dto";
 import {MatDialog} from "@angular/material/dialog";
 import {ContactCreateDialogComponent} from "../dialogs/contact-create-dialog/contact-create-dialog.component";
+import {ConfirmDeleteDialogComponent} from "../../shared/dialogs/confirm-delete-dialog/confirm-delete-dialog.component";
+import {ContactListItemDto} from "../../models/contact-list-item-dto";
+import {ContactEditDialogComponent} from "../dialogs/contact-edit-dialog/contact-edit-dialog.component";
+import {ContactShowDialogComponent} from "../dialogs/contact-show-dialog/contact-show-dialog.component";
 
 @Component({
   selector: 'app-contacts-list',
@@ -59,6 +63,43 @@ export class ContactsListComponent implements OnInit, AfterViewInit {
       if(created) {
         this.loadContacts();
       }
-    })
+    });
+  }
+
+  editContact(item: ContactListItemDto) {
+    const ref = this.dialog.open(ContactEditDialogComponent,
+      {
+        minWidth: '500px',
+        data: {
+          id: item.id
+        }
+      });
+    ref.afterClosed().subscribe((edited) => {
+      if(edited) {
+        this.loadContacts();
+      }
+    });
+  }
+
+  viewContact(item: ContactListItemDto) {
+    this.dialog.open(ContactShowDialogComponent,
+      {
+        minWidth: '500px',
+        data: {
+          id: item.id
+        }
+      });
+  }
+
+  deleteContact(contact: ContactListItemDto) {
+    const ref = this.dialog.open(ConfirmDeleteDialogComponent, {
+      minWidth: '500px',
+      data: {item: contact}
+    });
+    ref.afterClosed().subscribe((confirm) => {
+      if(confirm) {
+        console.log('delete');
+      }
+    });
   }
 }

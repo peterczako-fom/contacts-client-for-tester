@@ -1,6 +1,11 @@
 
-<h2>Contacts list</h2>
-<button (click)="createContact()">Create contact</button>
+<div style="display: flex; align-items: center; justify-content: space-between;">
+  <h2>Contacts list</h2>
+  <button (click)="createContact()" mat-mini-fab color="primary">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<!--<button (click)="createContact()" mat-raised-button color="primary">Create contact</button>-->
 
 <mat-spinner *ngIf="loading"></mat-spinner>
 
@@ -30,7 +35,13 @@
     <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
     <mat-cell *matCellDef="let element">
       <div>
-        <button mat-raised-button color="warn">
+        <button (click)="viewContact(element)" mat-icon-button color="primary">
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <button (click)="editContact(element)" mat-icon-button color="primary">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button (click)="deleteContact(element)" mat-icon-button color="warn">
           <mat-icon>delete</mat-icon>
         </button>
       </div>
