@@ -1,0 +1,62 @@
+<div>
+  <h2 mat-dialog-title> Edit contact </h2>
+
+  <pre class="error" *ngIf="errorMessages.length > 0"> {{errorMessages | json}} </pre>
+
+  <mat-dialog-content [formGroup]="form">
+
+    <mat-form-field appearance="fill">
+      <mat-label> First name </mat-label>
+      <input matInput formControlName='firstName'>
+      <mat-error *ngIf="hasError('firstName')"> {{getError('firstName')}} </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label> Last name </mat-label>
+      <input matInput formControlName='lastName'>
+      <mat-error *ngIf="hasError('lastName')"> {{getError('lastName')}} </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label> Company </mat-label>
+      <mat-select formControlName='companyId'>
+        <mat-option *ngFor="let option of companyOptions" [value]="option.key"> {{option.value}} </mat-option>
+      </mat-select>
+      <mat-error *ngIf="hasError('companyId')"> {{getError('companyId')}} </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label> Email </mat-label>
+      <input matInput formControlName='email' email>
+      <mat-error *ngIf="hasError('email')"> {{getError('email')}} </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label> Phone number </mat-label>
+      <input matInput formControlName='phoneNumber' placeholder="06201111111">
+      <mat-error *ngIf="hasError('phoneNumber')"> {{getError('phoneNumber')}} </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label> Comment </mat-label>
+      <textarea matInput formControlName='comment'></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label> Created </mat-label>
+      <input matInput formControlName='createdDate'>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label> Last modified </mat-label>
+      <input matInput formControlName='lastModifiedDate'>
+    </mat-form-field>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-raised-button [mat-dialog-close]="false" color="primary">Cancel</button>
+    <button mat-raised-button (click)="updateContact()" color="primary"
+            [disabled]="!form.valid">Save</button>
+  </mat-dialog-actions>
+</div>
