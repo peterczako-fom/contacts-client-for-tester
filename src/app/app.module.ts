@@ -17,12 +17,18 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {MatIconModule} from "@angular/material/icon";
+import { ConfirmDeleteDialogComponent } from './shared/dialogs/confirm-delete-dialog/confirm-delete-dialog.component';
+import { ContactEditDialogComponent } from './contacts/dialogs/contact-edit-dialog/contact-edit-dialog.component';
+import { ContactShowDialogComponent } from './contacts/dialogs/contact-show-dialog/contact-show-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactsListComponent,
     ContactCreateDialogComponent,
+    ConfirmDeleteDialogComponent,
+    ContactEditDialogComponent,
+    ContactShowDialogComponent,
   ],
   imports: [
     BrowserModule,
