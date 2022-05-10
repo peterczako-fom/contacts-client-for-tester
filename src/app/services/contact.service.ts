@@ -4,33 +4,46 @@ import {ContactListDto} from "../models/contact-list-dto";
 import {PageRequest} from "../shared/page-request";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {ContactDto} from "../models/contact-dto";
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactService {
 
+  static readonly ContactBasePath: string = `${environment.baseUrl}/v1/contacts`;
+
   constructor(
     private http: HttpClient
   ) { }
 
-  static readonly ContactListGetPath: string = 'http://localhost:8080/api/v1/contacts/list'
-
   list(pageRequest: PageRequest): Observable<ContactListDto> {
     const params = new HttpParams()
       .set('page', pageRequest.page)
-    return this.http.get<ContactListDto>(ContactService.ContactListGetPath, {params: params});
+    return this.http.get<ContactListDto>(ContactService.ContactBasePath, {params: params});
   }
-
-  static readonly CompanyOptionsGetPath: string = 'http://localhost:8080/api/v1/contacts/company-options'
-
-  getCompanyOptions(): Observable<any> {
-    return this.http.get<any>(ContactService.CompanyOptionsGetPath);
-  }
-
-  static readonly ContactCreatePostPath: string = 'http://localhost:8080/api/v1/contacts/create'
 
   create(contact: ContactDto) {
-    return this.http.post(ContactService.ContactCreatePostPath, contact);
+    return this.http.post(ContactService.ContactBasePath, contact);
+  }
+
+  get(id: number): Observable<ContactDto> {
+    const url = `${ContactService.ContactBasePath}/${id}`
+    return this.http.get<ContactDto>(url);
+  }
+
+  update(id: number, contact: ContactDto) {
+    const url = `${ContactService.ContactBasePath}/${id}`;
+    return this.http.put(url, contact)
+  }
+
+  delete(id: number) {
+    const url = `${ContactService.ContactBasePath}/${id}`;
+    return this.http.delete(url)
+  }
+
+  getCompanyOptions(): Observable<any> {
+    const url = `${ContactService.ContactBasePath}/company-options`
+    return this.http.get<any>(url);
   }
 }
