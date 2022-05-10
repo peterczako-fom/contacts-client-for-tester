@@ -21,12 +21,12 @@ export class ContactCreateDialogComponent implements OnInit {
     private errorMessageService: ErrorMessageService,
   ) {
     this.form = new FormGroup({
-      firstName: new FormControl('Jack', [Validators.required]),
-      lastName: new FormControl('Doe', [Validators.required]),
-      companyId: new FormControl('1', [Validators.required]),
-      email: new FormControl('test@zzz.com', [Validators.required, Validators.email]),
-      phoneNumber: new FormControl('+36201234567', [Validators.pattern('^\\+36\\d{9}$')]),
-      comment: new FormControl(null, [Validators.required]),
+      firstName: new FormControl(null, [Validators.required]),
+      lastName: new FormControl(null, [Validators.required]),
+      companyId: new FormControl(null, [Validators.required]),
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      phoneNumber: new FormControl(null, [Validators.pattern('^\\+36\\d{9}$')]),
+      comment: new FormControl('', []),
     });
   }
 
@@ -37,6 +37,7 @@ export class ContactCreateDialogComponent implements OnInit {
       });
     });
   }
+
 
   createContact() {
     this.form.disable();
