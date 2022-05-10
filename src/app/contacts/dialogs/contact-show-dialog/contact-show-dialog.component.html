@@ -1,0 +1,52 @@
+<div matDialogTitle>Show contact</div>
+<mat-dialog-content>
+  <mat-spinner *ngIf="loading"></mat-spinner>
+
+  <div class="contact-form" *ngIf="!loading" [formGroup]="form">
+    <mat-form-field appearance="fill">
+      <mat-label> First name </mat-label>
+      <input matInput formControlName='firstName'>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label> Last name </mat-label>
+      <input matInput formControlName='lastName'>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label> Company </mat-label>
+      <mat-select formControlName='companyId' >
+        <mat-option *ngFor="let option of companyOptions" [value]="option.key"> {{option.value}} </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label> Email </mat-label>
+      <input matInput formControlName='email' email>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label> Phone number </mat-label>
+      <input matInput formControlName='phoneNumber'>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label> Comment </mat-label>
+      <textarea matInput formControlName='comment'></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label> Created </mat-label>
+      <input matInput formControlName='createdDate'>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label> Last modified </mat-label>
+      <input matInput formControlName='lastModifiedDate'>
+    </mat-form-field>
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button matDialogClose="" mat-raised-button color="primary"> Close </button>
+</mat-dialog-actions>
