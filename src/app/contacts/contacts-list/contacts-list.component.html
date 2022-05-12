@@ -1,7 +1,7 @@
 
 <div style="display: flex; align-items: center; justify-content: space-between;">
   <h2>Contacts list</h2>
-  <button (click)="createContact()" mat-mini-fab color="primary">
+  <button (click)="createContact()" mat-mini-fab color="primary" title="Create contact">
     <mat-icon>add</mat-icon>
   </button>
 </div>
@@ -35,13 +35,13 @@
     <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
     <mat-cell *matCellDef="let element">
       <div>
-        <button (click)="viewContact(element)" mat-icon-button color="primary">
+        <button (click)="viewContact(element)" mat-icon-button color="primary" title="View contact">
           <mat-icon>visibility</mat-icon>
         </button>
-        <button (click)="editContact(element)" mat-icon-button color="primary">
+        <button (click)="editContact(element)" mat-icon-button color="primary" title="Edit contact">
           <mat-icon>edit</mat-icon>
         </button>
-        <button (click)="deleteContact(element)" mat-icon-button color="warn">
+        <button (click)="deleteContact(element)" mat-icon-button color="warn" title="Delete contact">
           <mat-icon>delete</mat-icon>
         </button>
       </div>
