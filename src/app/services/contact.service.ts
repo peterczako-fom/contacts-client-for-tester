@@ -5,6 +5,7 @@ import {PageRequest} from "../shared/page-request";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {ContactDto} from "../models/contact-dto";
 import { environment } from "../../environments/environment";
+import {ContactDetailsDto} from "../models/contact-details-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,11 @@ export class ContactService {
   get(id: number): Observable<ContactDto> {
     const url = `${ContactService.ContactBasePath}/${id}`
     return this.http.get<ContactDto>(url);
+  }
+
+  getDetails(id: number): Observable<ContactDetailsDto> {
+    const url = `${ContactService.ContactBasePath}/${id}/details`
+    return this.http.get<ContactDetailsDto>(url);
   }
 
   update(id: number, contact: ContactDto) {

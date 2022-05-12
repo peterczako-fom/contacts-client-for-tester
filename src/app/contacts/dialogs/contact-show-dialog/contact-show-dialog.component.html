@@ -15,9 +15,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label> Company </mat-label>
-      <mat-select formControlName='companyId' >
-        <mat-option *ngFor="let option of companyOptions" [value]="option.key"> {{option.value}} </mat-option>
-      </mat-select>
+      <input matInput formControlName='companyName' >
     </mat-form-field>
 
     <mat-form-field appearance="fill">
